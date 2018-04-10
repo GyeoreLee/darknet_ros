@@ -36,12 +36,14 @@ const int num_classes = sizeof(class_labels)/sizeof(class_labels[0]);
 cv::Mat input_image;
 
 // define parameters
-const std::string CAMERA_TOPIC_NAME = "/usb_cam/image_raw";
-const std::string CAMERA_WIDTH_PARAM = "/usb_cam/image_width";
-const std::string CAMERA_HEIGHT_PARAM = "/usb_cam/image_height";
+const std::string CAMERA_TOPIC_NAME = "/sn_kinect1/rgb/image_color"; //This line could be changed.
+const std::string CAMERA_WIDTH_PARAM = "640"; //This line is about image resolution.
+const std::string CAMERA_HEIGHT_PARAM = "480";//This line is about image resolution.
+
 const std::string OPENCV_WINDOW = "YOLO object detection";
-int FRAME_W;
-int FRAME_H;
+int FRAME_W = 640;
+int FRAME_H = 480;
+
 int FRAME_AREA;
 int FRAME_COUNT = 0;
 
@@ -213,8 +215,8 @@ int main(int argc, char** argv)
 {
    ros::init(argc, argv, "ROS_interface");
 
-   ros::param::get(CAMERA_WIDTH_PARAM, FRAME_W);
-   ros::param::get(CAMERA_HEIGHT_PARAM, FRAME_H);
+   //ros::param::get(CAMERA_WIDTH_PARAM, FRAME_W);
+   //ros::param::get(CAMERA_HEIGHT_PARAM, FRAME_H);
 
    load_net(cfg, weights, thresh, 0.5);
 
